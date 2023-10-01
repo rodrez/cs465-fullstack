@@ -1,15 +1,13 @@
-const { on } = require("events");
 const mongoose = require("mongoose");
-const host = process.env.DB_HOST || "localhost";
-const dbURI = `mongodb://${host}/travlr`;
-const readLine = require("readline");
-
-mongoose.set("useUnifiedTopology", true);
+const dbURI = `mongodb://root:root@localhost/travlr?authSource=admin`;
 
 const connect = () => {
   setTimeout(
     () =>
-      mongoose.connect(dbURI, { useNewUrlParser: true, useCreateIndex: true }),
+      mongoose.connect(dbURI, {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }),
     1000,
   );
 };
@@ -18,7 +16,7 @@ const connect = () => {
 mongoose.connection.on("connected", () => {
   console.log(`Mongoose connected to ${dbURI}`);
 });
-mongoose.connection.on("error", () => {
+mongoose.connection.on("error", (err) => {
   console.log(`Mongoose connection error: ${err}`);
 });
 mongoose.connection.on("disconnected", () => {
@@ -55,4 +53,4 @@ mongoose.connection.on("SIGTERM", () => {});
 connect();
 
 // bring in the schemas
-require("./travlr");
+require("./trips");
