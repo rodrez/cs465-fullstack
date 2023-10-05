@@ -3,6 +3,6 @@ const router = express.Router();
 const travelController = require("../controllers/travel");
 
 /* GET travel page. */
-router.get("/", travelController.travel);
+router.get("/", travelController.travelList);
 
 module.exports = router;

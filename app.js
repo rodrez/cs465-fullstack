@@ -4,9 +4,9 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 var hbs = require("hbs");
-require("./app_api/models/");
-require("./app_server/models/db");
-require("./app_server/models/trips");
+require("./app_api/database/db");
+// require("./app_server/models/");
+// require("./app_server/models/trips");
 
 var indexRouter = require("./app_server/routes/index");
 var usersRouter = require("./app_server/routes/users");

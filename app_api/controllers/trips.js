@@ -15,6 +15,7 @@ const tripsList = async (req, res) => {
 };
 
 const tripsByCode = async (req, res) => {
+  console.log("CODE: ", req.params.code);
   TripsModel.find({ code: req.params.code }).exec((err, trip) => {
     if (!trip) {
       return res.status(404).json({ message: "trip not found" });
