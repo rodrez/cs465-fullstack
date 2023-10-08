@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { trips } from "../data/trips";
 
-type Trip = {
+export type Trip = {
   code: string;
   name: string;
   length: string;

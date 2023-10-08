@@ -1,0 +1,175 @@
+<div
+  class="bg-white rounded-md dark:bg-gray-800 pb-6 shadow-xl max-w-sm flex flex-col"
+>
+  <img
+    class="w-full rounded-t-md"
+    src="assets/images/{{ trip.image }}"
+    alt="costume-party"
+  />
+  <div class="flex mt-4 pl-4">
+    <p
+      class="text-base font-bold leading-normal text-gray-800 dark:text-gray-100"
+    >
+      {{ trip.resort }}
+    </p>
+  </div>
+  <div class="mt-4 flex items-center pl-4 text-gray-600 dark:text-gray-100">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="20"
+      height="20"
+      viewBox="0 0 20 20"
+      fill="none"
+    >
+      <rect
+        x="3.33337"
+        y="4.16699"
+        width="13.3333"
+        height="13.3333"
+        rx="2"
+        stroke="currentColor"
+        stroke-width="1.25"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></rect>
+      <path
+        d="M13.3333 2.5V5.83333"
+        stroke="currentColor"
+        stroke-width="1.25"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></path>
+      <path
+        d="M6.66667 2.5V5.83333"
+        stroke="currentColor"
+        stroke-width="1.25"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></path>
+      <path
+        d="M3.33337 9.16667H16.6667"
+        stroke="currentColor"
+        stroke-width="1.25"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></path>
+      <path
+        d="M9.16663 12.4997H9.99996"
+        stroke="currentColor"
+        stroke-width="1.25"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></path>
+      <path
+        d="M10 12.5V15"
+        stroke="currentColor"
+        stroke-width="1.25"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      ></path>
+    </svg>
+    <p class="flex text-sm leading-none text-gray-700 dark:text-gray-100 ml-2">
+      {{ trip.length }} -
+      <span> {{ trip.perPerson }} </span>
+    </p>
+  </div>
+  <div
+    class="mt-4 p-4 flex-1 text-sm leading-none text-gray-700 dark:text-gray-100 ml-2"
+    [innerHTML]="trip.description"
+  ></div>
+  <div class="mt-5 pl-4">
+    <div class="flex items-center mt-4">
+      <button
+        class="py-2 px-3 bg-gradient-to-br from-indigo-400 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 rounded-sm flex items-center"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
+          fill="none"
+        >
+          <circle
+            cx="4.5"
+            cy="3.5"
+            r="2"
+            stroke="white"
+            stroke-width="0.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></circle>
+          <path
+            d="M1.5 10.5V9.5C1.5 8.39543 2.39543 7.5 3.5 7.5H5.5C6.60457 7.5 7.5 8.39543 7.5 9.5V10.5"
+            stroke="white"
+            stroke-width="0.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+          <path
+            d="M8 5.125C7.79289 5.125 7.625 5.29289 7.625 5.5C7.625 5.70711 7.79289 5.875 8 5.875V5.125ZM11 5.875C11.2071 5.875 11.375 5.70711 11.375 5.5C11.375 5.29289 11.2071 5.125 11 5.125V5.875ZM9.875 4C9.875 3.79289 9.70711 3.625 9.5 3.625C9.29289 3.625 9.125 3.79289 9.125 4H9.875ZM9.125 7C9.125 7.20711 9.29289 7.375 9.5 7.375C9.70711 7.375 9.875 7.20711 9.875 7H9.125ZM8 5.875H11V5.125H8V5.875ZM9.125 4V7H9.875V4H9.125Z"
+            fill="white"
+          ></path>
+        </svg>
+        <p class="text-xs leading-3 text-white dark:text-gray-100 ml-1">
+          Book a Trip
+        </p>
+      </button>
+      <button
+        class="py-2 ml-3 px-3 bg-gray-700 hover:bg-gray-600 ease-in duration-150 rounded-sm flex items-center"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="12"
+          height="12"
+          viewBox="0 0 12 12"
+          fill="none"
+        >
+          <circle
+            cx="3"
+            cy="6"
+            r="1.5"
+            stroke="white"
+            stroke-width="0.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></circle>
+          <circle
+            cx="9"
+            cy="3"
+            r="1.5"
+            stroke="white"
+            stroke-width="0.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></circle>
+          <circle
+            cx="9"
+            cy="9"
+            r="1.5"
+            stroke="white"
+            stroke-width="0.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></circle>
+          <path
+            d="M4.34998 5.3499L7.64998 3.6499"
+            stroke="white"
+            stroke-width="0.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+          <path
+            d="M4.34998 6.6499L7.64998 8.3499"
+            stroke="white"
+            stroke-width="0.75"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ></path>
+        </svg>
+        <p class="text-xs leading-3 text-white dark:text-gray-100 ml-1">
+          Share Trip
+        </p>
+      </button>
+    </div>
+  </div>
+</div>
