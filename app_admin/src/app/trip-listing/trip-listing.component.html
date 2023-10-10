@@ -1,5 +1,8 @@
-<div class="flex flex-row gap-8">
+<div class="flex gap-8">
   <div *ngFor="let trip of trips">
-    <app-trip-card [trip]="trip"></app-trip-card>
+    <app-trip-card
+      class="bg-white rounded-md dark:bg-gray-800 pb-6 shadow-xl max-w-sm flex flex-col"
+      [trip]="trip"
+    ></app-trip-card>
   </div>
 </div>

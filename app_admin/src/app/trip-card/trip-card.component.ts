@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
-import { Trip } from "../trip-listing/trip-listing.component";
+import { Trip } from "models/trips";
 
 @Component({
   selector: "app-trip-card",
