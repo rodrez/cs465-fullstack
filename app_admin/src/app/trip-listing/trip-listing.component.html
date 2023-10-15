@@ -1,3 +1,11 @@
+<div>
+  <button
+    class="py-2 px-3 bg-gradient-to-br from-indigo-400 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 rounded-sm flex items-center"
+    (click)="addTrip()"
+  >
+    Add Trip
+  </button>
+</div>
 <div class="flex gap-8">
   <div *ngFor="let trip of trips">
     <app-trip-card

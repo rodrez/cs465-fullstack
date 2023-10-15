@@ -6,9 +6,10 @@ import { AppComponent } from "./app.component";
 import { TripListingComponent } from "./trip-listing/trip-listing.component";
 import { TripCardComponent } from "./trip-card/trip-card.component";
 import { TripDataService } from "./trip-data.service";
+import { AddTripComponent } from './add-trip/add-trip.component';
 
 @NgModule({
-  declarations: [AppComponent, TripListingComponent, TripCardComponent],
+  declarations: [AppComponent, TripListingComponent, TripCardComponent, AddTripComponent],
   imports: [BrowserModule, HttpModule],
   providers: [TripDataService],
   bootstrap: [AppComponent],
