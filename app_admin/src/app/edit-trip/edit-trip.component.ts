@@ -1,17 +1,18 @@
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { TripDataService } from "../trip-data.service";
 
 @Component({
-  selector: "app-add-trip",
-  templateUrl: "./add-trip.component.html",
-  styleUrls: ["./add-trip.component.css"],
+  selector: "app-edit-trip",
+  templateUrl: "./edit-trip.component.html",
+  styleUrls: ["./edit-trip.component.css"],
   providers: [TripDataService],
 })
-export class AddTripComponent implements OnInit {
-  addForm: FormGroup;
+export class EditTripComponent implements OnInit {
+  editForm: FormGroup;
   submitted: boolean = false;
+
   constructor(
     private formBuilder: FormBuilder,
     private router: Router,
@@ -19,9 +20,18 @@ export class AddTripComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.addForm = this.formBuilder.group({
+    // retrieve stashed tripId
+    let code = localStorage.getItem("code");
+    if (!code) {
+      alert("Something went wrong, couldn't retrieve the tripId");
+      this.router.navigate([""]);
+      return;
+    }
+
+    // initialize the form
+    this.editForm = this.formBuilder.group({
       _id: [],
-      code: ["", Validators.required],
+      code: [code, Validators.required],
       name: ["", Validators.required],
       length: ["", Validators.required],
       start: ["", Validators.required],
@@ -30,19 +40,20 @@ export class AddTripComponent implements OnInit {
       image: ["", Validators.required],
       description: ["", Validators.required],
     });
+
+    this.tripService.getTrip(code).then((data) => {
+      this.editForm.patchValue(data);
+    });
   }
 
   onSubmit() {
     this.submitted = true;
-    if (this.addForm.valid) {
-      this.tripService.addTrip(this.addForm.value).then((data) => {
+
+    if (this.editForm.valid) {
+      this.tripService.updateTrip(this.editForm.value).then((data) => {
         console.log("data", data);
         this.router.navigate(["/"]);
       });
     }
-  }
-  // Get theform short name to access the form fields
-  get f() {
-    return this.addForm.controls;
   }
 }

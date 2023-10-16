@@ -9,26 +9,45 @@ export class TripDataService {
   constructor(private http: Http) {}
 
   private apiBaseUrl = "http://localhost:3000/api";
+  private tripUrl = `${this.apiBaseUrl}/trips`;
 
   public addTrip(formData: Trip): Promise<Trip> {
-    const url: string = `${this.apiBaseUrl}/trips`;
     console.log("Calling TripDataService.addTrip");
 
     return this.http
-      .post(url, formData)
+      .post(this.tripUrl, formData)
       .toPromise()
       .then((response) => response.json() as Trip[])
       .catch(this.handleError);
   }
 
   public getTrips(): Promise<Trip[]> {
-    const url: string = `${this.apiBaseUrl}/trips`;
     console.log("Calling TripDataService.getTrips");
 
     return this.http
-      .get(url)
+      .get(this.tripUrl)
       .toPromise()
       .then((response) => response.json() as Trip[])
+      .catch(this.handleError);
+  }
+
+  public getTrip(code: string): Promise<Trip> {
+    console.log("Calling TripDataService.getTrip");
+    return this.http
+      .get(`${this.tripUrl}/${code}`)
+      .toPromise()
+      .then((response) => response.json() as Trip)
+      .catch(this.handleError);
+  }
+
+  public updateTrip(formData: Trip): Promise<Trip> {
+    console.log("Calling TripDataService.updateTrip");
+    console.log("formData", formData);
+
+    return this.http
+      .put(`${this.tripUrl}/${formData.code}`, formData)
+      .toPromise()
+      .then((response) => response.json() as Trip)
       .catch(this.handleError);
   }
 
