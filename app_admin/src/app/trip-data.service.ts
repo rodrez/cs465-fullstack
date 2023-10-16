@@ -10,6 +10,17 @@ export class TripDataService {
 
   private apiBaseUrl = "http://localhost:3000/api";
 
+  public addTrip(formData: Trip): Promise<Trip> {
+    const url: string = `${this.apiBaseUrl}/trips`;
+    console.log("Calling TripDataService.addTrip");
+
+    return this.http
+      .post(url, formData)
+      .toPromise()
+      .then((response) => response.json() as Trip[])
+      .catch(this.handleError);
+  }
+
   public getTrips(): Promise<Trip[]> {
     const url: string = `${this.apiBaseUrl}/trips`;
     console.log("Calling TripDataService.getTrips");

@@ -1,15 +1,45 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { Router } from "@angular/router";
+import { TripDataService } from "../trip-data.service";
 
 @Component({
-  selector: 'app-add-trip',
-  templateUrl: './add-trip.component.html',
-  styleUrls: ['./add-trip.component.css']
+  selector: "app-add-trip",
+  templateUrl: "./add-trip.component.html",
+  styleUrls: ["./add-trip.component.css"],
+  providers: [TripDataService],
 })
 export class AddTripComponent implements OnInit {
-
-  constructor() { }
+  addForm: FormGroup;
+  submitted: boolean = false;
+  constructor(
+    private formBuilder: FormBuilder,
+    private router: Router,
+    private tripService: TripDataService,
+  ) {}
 
   ngOnInit() {
+    this.addForm = this.formBuilder.group({
+      _id: [],
+      code: ["", Validators.required],
+      name: ["", Validators.required],
+      length: ["", Validators.required],
+      start: ["", Validators.required],
+      resort: ["", Validators.required],
+      perPerson: ["", Validators.required],
+      image: ["", Validators.required],
+      description: ["", Validators.required],
+    });
   }
+
+  onSubmit() {
+    this.submitted = true;
+    if(this.addForm.valid) {
+      this.tripService.addTrip(this.addForm.value)
+      .subscribe(data => {
+        console.log(data);
+        this.router.navigate(['']);
+      });
+
 
 }
