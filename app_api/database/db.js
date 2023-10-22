@@ -54,3 +54,4 @@ connect();
 
 // bring in the schemas
 require("./models/trips");
+require("./models/users");

@@ -1,21 +1,24 @@
-var createError = require("http-errors");
-var express = require("express");
-var path = require("path");
-var cookieParser = require("cookie-parser");
-var logger = require("morgan");
-var hbs = require("hbs");
+require("dotenv").config();
+
+const createError = require("http-errors");
+const express = require("express");
+const path = require("path");
+const cookieParser = require("cookie-parser");
+const logger = require("morgan");
+const hbs = require("hbs");
+const passport = require("passport");
+
 require("./app_api/database/db");
-// require("./app_server/models/");
-// require("./app_server/models/trips");
+require("./app_api/config/passport");
 
-var indexRouter = require("./app_server/routes/index");
-var usersRouter = require("./app_server/routes/users");
-var travelRouter = require("./app_server/routes/travel");
-var mealsRouter = require("./app_server/routes/meals");
-var roomsRouter = require("./app_server/routes/rooms");
-var apiRouter = require("./app_api/routes/index");
+const indexRouter = require("./app_server/routes/index");
+const usersRouter = require("./app_server/routes/users");
+const travelRouter = require("./app_server/routes/travel");
+const mealsRouter = require("./app_server/routes/meals");
+const roomsRouter = require("./app_server/routes/rooms");
+const apiRouter = require("./app_api/routes/index");
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set("views", path.join(__dirname, "app_server", "views"));
@@ -31,14 +34,16 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 app.use(express.static(path.join(__dirname, "app_admin")));
+app.use(passport.initialize());
 
 // Allow CORS
 app.use("/api", (req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:4200");
+  res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With, Content-Type, Accept",
+    "Origin, X-Requested-With, Content-Type, Accept, Authorization",
   );
+  res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   next();
 });
 
@@ -52,6 +57,13 @@ app.use("/api", apiRouter);
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
+});
+
+app.use(function (err, req, res, next) {
+  if (err.name === "UnauthorizedError") {
+    res.status(401);
+    res.json({ message: `${err.name}: ${err.message}` });
+  }
 });
 
 // error handler

@@ -169,10 +169,18 @@
     </button>
 
     <button
+      *ngIf="isLoggedIn()"
       (click)="editTrip(trip)"
-      class="py-2 ml-3 px-3 bg-gray-700 hover:bg-gray-600 ease-in duration-150 rounded-sm flex items-center"
+      class="py-2 ml-3 px-3 bg-gray-700 hover:bg-gray-600 ease-in duration-150 rounded-sm flex items-center text-xs leading-3 text-white dark:text-gray-100"
     >
       Edit
+    </button>
+    <button
+      *ngIf="isLoggedIn()"
+      (click)="deleteTrip(trip)"
+      class="py-2 ml-3 px-3 bg-red-700 hover:bg-red-600 ease-in duration-150 rounded-sm flex items-center text-xs leading-3 text-white dark:text-gray-100"
+    >
+      Delete
     </button>
   </div>
 </div>
