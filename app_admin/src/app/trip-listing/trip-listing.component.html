@@ -1,0 +1,17 @@
+<div>
+  <button
+    *ngIf="isLoggedIn()"
+    class="text-xs mb-4 py-2 px-3 bg-gradient-to-br from-indigo-400 to-indigo-500 hover:from-indigo-500 hover:to-indigo-400 rounded-sm flex items-center"
+    (click)="addTrip()"
+  >
+    Add Trip
+  </button>
+</div>
+<div class="flex gap-8 w-8/12 mx-auto flex-wrap justify-center">
+  <div class="flex flex-wrap" *ngFor="let trip of trips">
+    <app-trip-card
+      class="bg-white rounded-md dark:bg-gray-800 pb-6 shadow-xl max-w-sm flex flex-col"
+      [trip]="trip"
+    ></app-trip-card>
+  </div>
+</div>
