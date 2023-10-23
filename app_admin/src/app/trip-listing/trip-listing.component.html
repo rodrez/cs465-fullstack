@@ -7,8 +7,8 @@
     Add Trip
   </button>
 </div>
-<div class="flex gap-8">
-  <div class="flex flex-wrap w-9/12" *ngFor="let trip of trips">
+<div class="flex gap-8 w-8/12 mx-auto flex-wrap justify-center">
+  <div class="flex flex-wrap" *ngFor="let trip of trips">
     <app-trip-card
       class="bg-white rounded-md dark:bg-gray-800 pb-6 shadow-xl max-w-sm flex flex-col"
       [trip]="trip"
